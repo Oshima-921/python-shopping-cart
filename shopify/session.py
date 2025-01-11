@@ -54,7 +54,7 @@ class Session(object):
         return
 
     def create_permission_url(self, scope, redirect_uri, state=None):
-        query_params = dict(client_id=self.api_key, scope=",".join(scope), redirect_uri=redirect_uri)
+        query_params = {"client_id": self.api_key, "scope": ",".join(scope), "redirect_uri": redirect_uri}
         if state:
             query_params["state"] = state
         return "https://%s/admin/oauth/authorize?%s" % (self.url, urllib.parse.urlencode(query_params))
@@ -69,7 +69,7 @@ class Session(object):
         code = params["code"]
 
         url = "https://%s/admin/oauth/access_token?" % self.url
-        query_params = dict(client_id=self.api_key, client_secret=self.secret, code=code)
+        query_params = {"client_id": self.api_key, "client_secret": self.secret, "code": code}
         request = urllib.request.Request(url, urllib.parse.urlencode(query_params).encode("utf-8"))
         response = urllib.request.urlopen(request)
 
