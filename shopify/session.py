@@ -53,7 +53,7 @@ class Session(object):
         self.access_scopes = access_scopes
         return
 
-    def create_permission_url(self,  redirect_uri, scope=None, state=None):
+    def create_permission_url(self, redirect_uri, scope=None, state=None):
         query_params = dict(client_id=self.api_key, redirect_uri=redirect_uri)
         # `scope` should be omitted if provided by app's TOML
         if scope: query_params["scope"] = ",".join(scope)
