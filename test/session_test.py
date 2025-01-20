@@ -148,7 +148,7 @@ class SessionTest(TestCase):
         shopify.Session.setup(api_key="My_test_key", secret="My test secret")
         session = shopify.Session("http://localhost.myshopify.com", "unstable")
         scope = ["write_customers"]
-        permission_url = session.create_permission_url( "my_redirect_uri.com", scope=scope, state="mystate")
+        permission_url = session.create_permission_url("my_redirect_uri.com", scope=scope, state="mystate")
         self.assertEqual(
             "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&redirect_uri=my_redirect_uri.com&scope=write_customers&state=mystate",
             self.normalize_url(permission_url),
