@@ -24,7 +24,7 @@ class Metafields(object):
         if self.is_new():
             raise ValueError("You can only add metafields to a resource that has been saved")
 
-        metafield._prefix_options = dict(resource=self.__class__.plural, resource_id=self.id)
+        metafield._prefix_options = {"resource": self.__class__.plural, "resource_id": self.id}
         metafield.save()
         return metafield
 

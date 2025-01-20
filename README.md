@@ -89,10 +89,11 @@ pip install --upgrade ShopifyAPI
     session = shopify.Session(shop_url, api_version, access_token)
     shopify.ShopifyResource.activate_session(session)
 
-    shop = shopify.Shop.current() # Get the current shop
-    product = shopify.Product.find(179761209) # Get a specific product
+    # Note: REST API examples will be deprecated in 2025
+    shop = shopify.Shop.current()  # Get the current shop
+    product = shopify.Product.find(179761209)  # Get a specific product
 
-    # execute a graphQL call
+    # GraphQL API example
     shopify.GraphQL().execute("{ shop { name id } }")
     ```
 
@@ -152,6 +153,13 @@ _Note: Your application must be public to test the billing process. To test on a
     ```
 
 ### Advanced Usage
+
+> **⚠️ Note**: As of October 1, 2024, the REST Admin API is legacy:
+> - Public apps must migrate to GraphQL by February 2025
+> - Custom apps must migrate to GraphQL by April 2025
+> 
+> For migration guidance, see [Shopify's migration guide](https://shopify.dev/docs/apps/build/graphql/migrate/new-product-model)
+
 It is recommended to have at least a basic grasp on the principles of the [pyactiveresource](https://github.com/Shopify/pyactiveresource) library, which is a port of rails/ActiveResource to Python and upon which this package relies heavily.
 
 Instances of `pyactiveresource` resources map to RESTful resources in the Shopify API.
@@ -159,6 +167,7 @@ Instances of `pyactiveresource` resources map to RESTful resources in the Shopif
 `pyactiveresource` exposes life cycle methods for creating, finding, updating, and deleting resources which are equivalent to the `POST`, `GET`, `PUT`, and `DELETE` HTTP verbs.
 
 ```python
+# Note: REST API examples will be deprecated in 2025
 product = shopify.Product()
 product.title = "Shopify Logo T-Shirt"
 product.id                          # => 292082188312
@@ -184,6 +193,7 @@ new_orders = shopify.Order.find(status="open", limit="50")
 Some resources such as `Fulfillment` are prefixed by a parent resource in the Shopify API (e.g. `orders/450789469/fulfillments/255858046`). In order to interact with these resources, you must specify the identifier of the parent resource in your request.
 
 ```python
+# Note: This REST API example will be deprecated in the future
 shopify.Fulfillment.find(255858046, order_id=450789469)
 ```
 
@@ -197,6 +207,9 @@ This package also includes the `shopify_api.py` script to make it easy to open a
 ### GraphQL
 
 This library also supports Shopify's new [GraphQL API](https://help.shopify.com/en/api/graphql-admin-api). The authentication process is identical. Once your session is activated, simply construct a new graphql client and use `execute` to execute the query.
+
+> **Note**: Shopify recommends using GraphQL API for new development as REST API will be deprecated.
+> See [Migration Guide](https://shopify.dev/docs/apps/build/graphql/migrate/new-product-model) for more details.
 
 ```python
 result = shopify.GraphQL().execute('{ shop { name id } }')

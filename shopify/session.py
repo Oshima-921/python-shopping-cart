@@ -72,7 +72,7 @@ class Session(object):
         code = params["code"]
 
         url = "https://%s/admin/oauth/access_token?" % self.url
-        query_params = dict(client_id=self.api_key, client_secret=self.secret, code=code)
+        query_params = {"client_id": self.api_key, "client_secret": self.secret, "code": code}
         request = urllib.request.Request(url, urllib.parse.urlencode(query_params).encode("utf-8"))
         response = urllib.request.urlopen(request)
 

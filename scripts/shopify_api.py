@@ -128,7 +128,7 @@ class Tasks(object):
         if os.path.exists(filename):
             raise ConfigFileError("There is already a config file at " + filename)
         else:
-            config = dict(protocol="https")
+            config = {"protocol": "https"}
             domain = input("Domain? (leave blank for %s.myshopify.com) " % (connection))
             if not domain.strip():
                 domain = "%s.myshopify.com" % (connection)

@@ -14,7 +14,6 @@ class ApiAccessError(Exception):
 
 
 class ApiAccess:
-
     SCOPE_DELIMITER = ","
     SCOPE_RE = re.compile(r"\A(?P<unauthenticated>unauthenticated_)?(write|read)_(?P<resource>.*)\Z")
     IMPLIED_SCOPE_RE = re.compile(r"\A(?P<unauthenticated>unauthenticated_)?write_(?P<resource>.*)\Z")
