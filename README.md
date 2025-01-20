@@ -157,7 +157,7 @@ _Note: Your application must be public to test the billing process. To test on a
 > **⚠️ Note**: As of October 1, 2024, the REST Admin API is legacy:
 > - Public apps must migrate to GraphQL by February 2025
 > - Custom apps must migrate to GraphQL by April 2025
-> 
+>
 > For migration guidance, see [Shopify's migration guide](https://shopify.dev/docs/apps/build/graphql/migrate/new-product-model)
 
 It is recommended to have at least a basic grasp on the principles of the [pyactiveresource](https://github.com/Shopify/pyactiveresource) library, which is a port of rails/ActiveResource to Python and upon which this package relies heavily.
